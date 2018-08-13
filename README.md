@@ -1,1 +1,1 @@
-# wp-devkit
+# kickstart-wordpress
