@@ -1,10 +1,8 @@
 <?php
 // load config files with database settings
 if ( file_exists( dirname( __FILE__ ) . '/config/config.' . $_SERVER['HTTP_HOST'] . '.php' ) ) :
-  define( 'WP_LOCAL_DEV', false );
   include( dirname( __FILE__ ) . '/config/config.' . $_SERVER['HTTP_HOST'] . '.php' );
 else :
-  define( 'WP_LOCAL_DEV', true );
   include( dirname( __FILE__ ) . '/config/config.php' );
 endif;
 
@@ -20,9 +18,15 @@ define( 'WP_CONTENT_URL', 'http://' . $_SERVER['HTTP_HOST'] . '/content' );
 define( 'WPLANG', '' );
 
 // debug
-ini_set( 'display_errors', 0 );
-define( 'WP_DEBUG_DISPLAY', false );
-define( 'WP_DEBUG', false );
+if ( WP_LOCAL_DEV === true ) {
+  ini_set( 'display_errors', E_ALL );
+  define( 'WP_DEBUG_DISPLAY', true );
+  define( 'WP_DEBUG', true );
+} else {
+  ini_set( 'display_errors', 0 );
+  define( 'WP_DEBUG_DISPLAY', false );
+  define( 'WP_DEBUG', false );
+}
 
 // secret keys
 // @link https://api.wordpress.org/secret-key/1.1/salt/
