@@ -1,9 +1,27 @@
-.DS_Store
-*.log
-
-/public/wp/
-/public/content/upgrade/
-/public/content/cache/
-/public/content/advanced-cache.php
-/public/content/wp-cache-config.php
+# ignore local config:
 /public/config/config.*.test.php
+
+# ignore wp core:
+/public/wp/
+
+# ignore everything in the "content" directory, except:
+# "mu-plugins", "plugins", "themes" directory
+content/*
+!content/mu-plugins/
+!content/plugins/
+!content/themes/
+
+# ignore these plugins
+content/plugins/hello.php
+
+# ignore these themes
+content/themes/twenty*/
+
+# ignore node dependency directories
+node_modules/
+
+# ignore log files, databases and system files
+*.log
+*.sql
+*.sqlite
+.DS_Store
